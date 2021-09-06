@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 namespace median_sorted_array
 {
@@ -13,7 +13,7 @@ namespace median_sorted_array
             var result=obj.FindMedianSortedArrays(arr1, arr2);
             Console.WriteLine("------->"+ result);
         }
-
+	//created develop branch for dev purposes
         public double FindMedianSortedArrays(int[] nums1, int[] nums2)
         {
             double median = 0.0; List<int>sorted_merged_array = new List<int>();
