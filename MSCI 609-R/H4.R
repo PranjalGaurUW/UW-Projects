@@ -1,0 +1,37 @@
+# install.packages("ggplot2")
+#install.packages("lmtest")
+#install.packages("reshape2")
+#install.packages("Hmisc")
+library(foreign)
+library(lmtest)
+library(ggplot2)
+library(MASS)
+library(Hmisc)
+library(reshape2)
+dat <- read.csv("/Users/pranjalgaur/1. UW Courses/609/Pranjal_TermPaper_OLS/Model 4/Model 4-Filtered.csv")
+head(dat)
+summary(dat$HR_10)
+m <- polr(as.factor(HR_10) ~ PEDUC_LC + RURURB + AGEGRP + SEX, data = dat, Hess=TRUE)
+summary(m)
+(ctable <- coef(summary(m)))
+p <- pnorm(abs(ctable[, "t value"]), lower.tail = FALSE) * 2
+(ctable <- cbind(ctable, "p value" = p))
+(ci <- confint(m))
+exp(cbind(OR = coef(m), ci))
+sf <- function(y) {
+  c('Y>=1' = qlogis(mean(y >= 1)),
+    'Y>=2' = qlogis(mean(y >= 2)),
+    'Y>=3' = qlogis(mean(y >= 3)),
+    'Y>=4' = qlogis(mean(y >= 4)))
+}
+(s <- with(dat, summary(as.numeric(HR_10) ~ PEDUC_LC + RURURB + AGEGRP + SEX, fun=sf)))
+#glm(I(as.numeric(HR_10) >= 4) ~ HR_05C + HR_20E + PTC_05E + PEDUC_LC+ RURURB + AGEGRP + SEX, family="binomial", data = dat, maxit = 100)
+mmsc <- lm (HR_10 ~ HR_05C + FCR_05 + PTC_05E + PEDUC_LC + RURURB + AGEGRP + SEX, data = dat, Hess=TRUE)
+#summary(mmsc)
+bptest(mmsc)
+res <- resid(mmsc)
+plot(fitted(mmsc), res)
+plot (density(res))
+abline(0,0)
+qqnorm(res)
+qqline(res) 
