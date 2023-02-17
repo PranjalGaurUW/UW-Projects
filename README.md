@@ -3,6 +3,8 @@ Postgres folder contains SQL code developed by me to help develop Database layer
 
 C# folder contains following code files:
 
+Dot NET Projects folder contains a Web API project built in .NET Core. The project implements WebAPI which perform CRUD operations on a local database of 'Products' ( apparels in an online shopping mart), such as fetch products by productId, get all products, update, delete, etc. Entity Framework is used to support these operations.
+
 The file for C# code SOLID implements the SOLID principles through:
 Abstraction: The IShape interface defines a common interface for all the shapes.
 Single Responsibility Principle: The Circle class has a single responsibility of defining the area of a circle.
