@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{E1C11AA0-6888-420B-8F35-92E2571F91E6}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DemoWebAPI/Controllers/ProductsController.cs">
+    <Files>
+      <File FileName="DemoWebAPI/Program.cs" Line="17" Column="1" />
+      <File FileName="DemoWebAPI/appsettings.json" Line="1" Column="1" />
+      <File FileName="DemoWebAPI/Startup.cs" Line="38" Column="70" />
+      <File FileName="DemoWebAPI/Models/Category.cs" Line="1" Column="1" />
+      <File FileName="DemoWebAPI/Models/Product.cs" Line="8" Column="22" />
+      <File FileName="DemoWebAPI/Models/ShopContext.cs" Line="1" Column="1" />
+      <File FileName="DemoWebAPI/Models/ModelBuilderExtensions.cs" Line="30" Column="33" />
+      <File FileName="DemoWebAPI/Controllers/ProductsController.cs" Line="34" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DemoWebAPI" expanded="True">
+            <Node name="DemoWebAPI" expanded="True">
+              <Node name="Dependencies" expanded="True">
+                <Node name="PackageDependencies" expanded="True" />
+              </Node>
+              <Node name="Controllers" expanded="True">
+                <Node name="ProductsController.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.DemoWebAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
