@@ -21,9 +21,33 @@ namespace DemoWebAPI.Controllers
             _context.Database.EnsureCreated();//Run seeding
         }
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts([FromQuery] ProductQueryParameters queryParameters)
         {
-            return Ok(await _context.Products.ToListAsync());
+            IQueryable<Product> products = _context.Products;
+            //pagination; skip (page-1)pages*size and return data from page=Page and size = Size
+            products = products
+                        .Skip(queryParameters.Size * (queryParameters.Page - 1))
+                        .Take(queryParameters.Size);
+            //Filter using Price
+            if(queryParameters.MinPrice!=null)
+            {
+                products = products
+                           .Where(x => x.Price >= queryParameters.MinPrice);
+            }
+            if(queryParameters.MaxPrice!=null)
+            {
+                products = products
+                           .Where(x => x.Price <= queryParameters.MaxPrice);
+            }
+
+            //Search products using name
+            if(!String.IsNullOrEmpty(queryParameters.Name))
+            {
+                products = products
+                           .Where(p => p.Name.ToLower().Contains(queryParameters.Name.ToLower()));
+            }
+
+            return Ok(await products.ToListAsync());
         }
 
         [HttpGet("{id}")]

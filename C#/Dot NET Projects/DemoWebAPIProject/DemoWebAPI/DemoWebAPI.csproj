@@ -12,6 +12,7 @@
     <None Remove="Models\" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="Duende.IdentityServer" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />

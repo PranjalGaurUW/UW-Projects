@@ -2,7 +2,7 @@
 
 C# folder contains following code files:
 
--Dot NET Projects folder contains a Web API project built in .NET Core. The project implements WebAPI which perform CRUD operations on a In-Memory database of 'Products' ( products in an online shopping store), such as fetch products by productId, get all products, update, delete, etc. Entity Framework is used to support these operations.
+-Dot NET Projects folder contains a Web API project built in .NET Core. The project implements WebAPI which perform CRUD operations on a In-Memory database of 'Products' ( products in an online shopping store), such as fetch products by productId, get all products, update, delete, etc. along with pagination, filter and search functionalities. Entity Framework is used to support these operations.
 
 -The file for C# code SOLID implements the SOLID principles through:
 Abstraction: The IShape interface defines a common interface for all the shapes.

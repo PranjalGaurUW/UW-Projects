@@ -36,6 +36,17 @@ namespace DemoWebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
             services.AddDbContext<ShopContext>(options => options.UseInMemoryDatabase("Shop"));
+
+            //Add CORS Policy
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(x =>
+                {
+                    x
+                    .WithOrigins("https://localhost:5000");
+                });
+            }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,12 +56,19 @@ namespace DemoWebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                //enforcing Https in higher environments
+                app.UseHsts();
+            }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
