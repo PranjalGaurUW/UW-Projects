@@ -13,7 +13,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace DemoWebAPI
 {
@@ -43,10 +45,27 @@ namespace DemoWebAPI
                 options.AddDefaultPolicy(x =>
                 {
                     x
-                    .WithOrigins("https://localhost:5000");
+                    .WithOrigins("https://localhost:5001");
                 });
             }
             );
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //define which claim requires to check
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    //store the value in appsettings.json
+                    ValidIssuer = Configuration["Jwt:Issuer"],
+                    ValidAudience = Configuration["Jwt:Issuer"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,7 +85,10 @@ namespace DemoWebAPI
 
             app.UseRouting();
 
+            //adding UseAuthentication
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseCors();
 

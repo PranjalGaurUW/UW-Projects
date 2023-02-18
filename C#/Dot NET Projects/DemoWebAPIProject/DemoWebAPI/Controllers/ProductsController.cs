@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DemoWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
+//For authentication, refer https://stackoverflow.com/questions/73658327/how-to-implement-oauth2-0-authentication-token-in-asp-net-core-web-api
+//Also refer-> https://www.c-sharpcorner.com/article/jwt-json-web-token-authentication-in-asp-net-core/
 namespace DemoWebAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -93,6 +95,7 @@ namespace DemoWebAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
             var item = await _context.Products.FindAsync(id);
