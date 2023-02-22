@@ -85,7 +85,7 @@ namespace DemoWebAPI
 
             app.UseRouting();
 
-            //adding UseAuthentication
+            //adding UserAuthentication
             app.UseAuthentication();
             app.UseAuthorization();
 
